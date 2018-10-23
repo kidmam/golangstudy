@@ -9,5 +9,6 @@ func printValue1(c chan int) {
 func main() {
 	ch := make(chan int, 1)
 	ch <- 10
+	ch <- 20
 	printValue1(ch)
 }
