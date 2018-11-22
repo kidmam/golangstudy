@@ -15,11 +15,15 @@ func compute(value int) {
 }
 
 func main() {
-	fmt.Println("Goroutine Tutorial")
+	fmt.Println("Goroutine Tutorial1")
 
 	// sequential execution of our compute function
-	compute(10)
-	compute(10)
+	go compute(10)
+	go compute(10)
+
+	go func() {
+		fmt.Println("Executing my Concurrent anonymouse function")
+	}()
 
 	// we scan fmt for input and print that to our console
 	var input string
