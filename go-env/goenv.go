@@ -19,7 +19,7 @@ type Environment struct {
 }
 
 func main() {
-	var environment env.Environment
+	var environment Environment
 	es, err := env.UnmarshalFromEnviron(&environment)
 	if err != nil {
 		log.Fatal(err)
@@ -34,14 +34,15 @@ func main() {
 		log.Fatal(err)
 	}
 
+	home := "/tmp/edgarl"
 	cs := env.ChangeSet{
-		"HOME":         "/tmp/edgarl",
+		"HOME":         &home,
 		"BUILD_ID":     nil,
 		"BUILD_NUMBER": nil,
 	}
 	es.Apply(cs)
 
-	environment = env.Environment{}
+	environment = Environment{}
 	err = env.Unmarshal(es, &environment)
 	if err != nil {
 		log.Fatal(err)
