@@ -13,6 +13,16 @@ const (
 	C3 = "adfadfasdf"
 )
 
+const (
+	p2_0 Power2 = 1 << iota
+	_
+	p2_2
+	_
+	p2_4
+	_
+	p2_6
+)
+
 func main() {
 	const s1 = 123
 	const s2 float64 = 123
@@ -21,4 +31,16 @@ func main() {
 
 	fmt.Println(v1)
 	//fmt.Println(v2)
+
+	const (
+		Zero Digit = iota
+		One
+		Two
+		Three
+		Four
+	)
+	fmt.Println(One)
+	fmt.Println(Two)
+
+	fmt.Println(p2_6)
 }
