@@ -12,6 +12,8 @@ type aStructure struct {
 }
 
 func main() {
+	//p1 := aStructure{"person", 12, -2} 구조체 리터럴
+
 	mySlice := make([]aStructure, 0)
 	mySlice = append(mySlice, aStructure{"Mihalis", 180, 90})
 	mySlice = append(mySlice, aStructure{"Bill", 134, 45})
