@@ -29,7 +29,7 @@ func main() {
 			//fmt.Println("Print: " + strings.Join(args, " "))
 
 			cmdStr := "init.sh"
-			command := exec.Command("sh", "-c", cmdStr)
+			command := exec.Command("sh", "-e", cmdStr)
 
 			var stdBuffer bytes.Buffer
 			mw := io.MultiWriter(os.Stdout, &stdBuffer)
@@ -146,7 +146,35 @@ func main() {
 		},
 	}
 
-	var rootCmd = &cobra.Command{Use: "Terraform"}
-	rootCmd.AddCommand(cmdInit, cmdPlan, cmdApply, cmdDestroy)
+	var cmdOutput = &cobra.Command{
+		Use:   "output",
+		Short: "Terraform output [modulename]",
+		Long: `Terraform output
+ -module: main.tf에 정의된 module 이름`,
+		Args: cobra.MinimumNArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			//fmt.Println("Print: " + strings.Join(args, " "))
+
+			cmdStr := "output.sh"
+			command := exec.Command("sh", "-e", cmdStr, args[0])
+
+			var stdBuffer bytes.Buffer
+			mw := io.MultiWriter(os.Stdout, &stdBuffer)
+
+			command.Stdout = mw
+			command.Stderr = mw
+
+			// Execute the command
+			if err := command.Run(); err != nil {
+				log.Panic(err)
+			}
+
+			log.Println(stdBuffer.String())
+
+		},
+	}
+
+	var rootCmd = &cobra.Command{Use: "devnetdeploytool"}
+	rootCmd.AddCommand(cmdInit, cmdPlan, cmdApply, cmdDestroy, cmdOutput)
 	rootCmd.Execute()
 }
