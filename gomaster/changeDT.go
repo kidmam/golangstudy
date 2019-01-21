@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"regexp"
 )
 
 func main() {
@@ -32,5 +33,9 @@ func main() {
 			fmt.Printf("error reading file %s", err)
 		}
 
+		r1 := regexp.MustCompile(``)
+		if r1.MatchString(line) {
+
+		}
 	}
 }
