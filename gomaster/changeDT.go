@@ -6,6 +6,8 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"strings"
+	"time"
 )
 
 func main() {
@@ -33,9 +35,16 @@ func main() {
 			fmt.Printf("error reading file %s", err)
 		}
 
-		r1 := regexp.MustCompile(``)
+		r1 := regexp.MustCompile(`.*\[(\/)`)
 		if r1.MatchString(line) {
-
+			match := r1.FindStringSubmatch(line)
+			d1, err := time.Parse("02/Jan/2006:15:04", match[1])
+			if err != nil {
+				newFormat := d1.Format(time.Stamp)
+				fmt.Print(strings.Replace(line, match[1], newFormat, 1))
+			} else {
+				notAMatch++
+			}
 		}
 	}
 }
