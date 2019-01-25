@@ -18,4 +18,13 @@ func main() {
 	fmt.Printf("x: % x\n", sLiternal)
 
 	fmt.Printf("s: As a string %s\n", sLiternal)
+
+	const s3 = "ab12AB"
+	fmt.Println("s3:", s3)
+	fmt.Printf("x: % x\n", s3)
+	fmt.Printf("s3 legnth: %d\n", len(s3))
+
+	for i := 0; i < len(s3); i++ {
+		fmt.Printf("%x ", s3[i])
+	}
 }
