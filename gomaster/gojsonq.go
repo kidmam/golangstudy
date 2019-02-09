@@ -8,4 +8,3 @@ func main() {
 	name := gojsonq.New().JSONString(json).Find("name.first")
 	println(name.(string)) // Tom
 }
-c
