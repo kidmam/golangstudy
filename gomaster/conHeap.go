@@ -47,4 +47,5 @@ func main() {
 
 	heap.Init(myHeap)
 	fmt.Printf("%v\n", myHeap)
+
 }
